@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+      }
+      .catImage {
+        border: 30px solid blue;
+        border-radius: 10px;
+        width: 600px;
+        height: 360px;
+      }
+      #xpBar {
+        background-color: white;
+        width: 80px;
+        height: 500px;
+        position: absolute;
+        left: 85%;
+        text-align: center;
+        font-size: 30px;
+      }
+
+      #Info {
+        background-color: white;
+        width: 200px;
+        height: 500px;
+        position: absolute;
+        right: 85%;
+        text-align: center;
+        font-size: 30px;
+      }
+
+      #buttonDiv {
+        position: absolute;
+        display: flex;
+        top: 60%;
+        width: 100%;
+        height: 300px;
+        background-color: aqua;
+        justify-content: center;
+        align-items: center;
+      }
+      .button {
+        width: 600px;
+        height: 200px;
+        border: 7px solid black;
+        border-radius: 5px;
+        margin: auto;
+      }
+      #feed {
+        background-image: "food1.png";
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="imageDiv">
+        <img class="catImage" id="cat1" src="Level1.png" />
+      </div>
+      <div id="xpBar">EXP</div>
+      <div id="Info">Info</div>
+      <div id="buttonDiv">
+        <button class="button" id="feed">밥 주기</button>
+        <button class="button" id="water">물 먹이기</button>
+      </div>
+    </div>
+  </body>
+</html>
