@@ -107,7 +107,7 @@
       <div id="Info">
         Info
         <ul id="InfoList">
-          <li>EnemyName: 아기 고양이</li>
+          <li id="EnemyName">Lv.1 아기 고양이</li>
           <li id="DamagePerClick">DPC: -</li>
           <li id="Gold">돈 : 0원ㅋ</li>
         </ul>
@@ -122,7 +122,7 @@
       //일반 변수 선언
 
       let EXP = 0,
-        setEXP = 100000,
+        setEXP = 50000,
         Level = 1,
         feed,
         water,
@@ -131,6 +131,15 @@
         Gold = 0,
         upgradeG = 1,
         attLv = 1;
+
+      const EnemyName = [
+        "아기 고양이",
+        "고양이",
+        "멋쟁이 고양이",
+        "여장 고양이",
+        "탐정 고양이",
+        "깡패 고양이",
+      ];
 
       //요소 변수 선언
 
@@ -160,6 +169,9 @@
           11;
 
         //정보창에 정보 출력
+        document.getElementById("EnemyName").innerHTML = `Lv.${Level} ${
+          EnemyName[Level - 1]
+        }`;
         document.getElementById("DamagePerClick").innerHTML = `DPC : ${
           6 * (attLv * attLv)
         } ~ ${attLv * attLv * (2 + attLv) + 26}`;
@@ -171,7 +183,7 @@
         if (EXP >= setEXP) {
           Level++;
           EXP -= setEXP;
-          setEXP = Math.floor(1000 + setEXP * (1 + Level / 25));
+          setEXP = Math.floor(100000 * Level + setEXP * (3 + Level / 10));
           document.getElementById("cat").src = `Level${Level}.png`;
         }
 
