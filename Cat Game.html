@@ -22,6 +22,7 @@
         font-size: 40px;
         text-align: center;
         color: white;
+        display: flex;
       }
       .catImage {
         border: 30px solid blue;
@@ -30,7 +31,7 @@
         height: 360px;
       }
       #xpBar {
-        background-color: white;
+        background-color: green;
         width: 80px;
         height: 400px;
         position: absolute;
@@ -39,7 +40,7 @@
         font-size: 30px;
       }
       #progBar {
-        background-color: blue;
+        background-color: red;
         bottom: 0%;
         width: 80px;
         height: 0%;
@@ -101,7 +102,7 @@
         <img class="catImage" id="cat" src="Level1.png" />
       </div>
       <div id="xpBar">
-        EXP
+        HP
         <div id="progBar"></div>
       </div>
       <div id="Info">
@@ -207,6 +208,7 @@
           (EXP / setEXP) * 100
         }%`;
         console.log(`${EXP}  ${setEXP} 업글돈:${upgradeG} atLv: ${attLv}`);
+
         //데미지 문구 출력
         if (crit == 0) {
           document.getElementById("damageText").innerHTML = `${plusATD}`;
