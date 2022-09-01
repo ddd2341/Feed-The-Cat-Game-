@@ -15,7 +15,7 @@
         justify-content: center;
       }
       #damageText {
-        position: absolute;
+        position: relative;
         z-index: 5;
         width: 100px;
         height: 40px;
@@ -26,9 +26,21 @@
       }
       .catImage {
         border: 30px solid blue;
-        border-radius: 10px;
+        border-radius: 15px;
         width: 600px;
         height: 360px;
+        position: relative;
+      }
+      #dealEffect {
+        position: relative;
+        display: flex;
+        top: -100%;
+        width: 100%;
+        height: 100%;
+        z-index: 6;
+        background-color: white;
+        opacity: 0;
+        border-radius: 15px;
       }
       #xpBar {
         background-color: green;
@@ -50,6 +62,7 @@
 
       .button:active {
         background-color: black;
+        cursor: pointer;
       }
 
       #Info {
@@ -100,6 +113,7 @@
       <div id="damageText"></div>
       <div class="imageDiv">
         <img class="catImage" id="cat" src="Level1.png" />
+        <div id="dealEffect"></div>
       </div>
       <div id="xpBar">
         HP
@@ -115,7 +129,7 @@
       </div>
       <div id="buttonDiv">
         <button class="button" id="feed">밥 주기</button>
-        <button class="button" id="upgradeD">데미지 증가("1"Gold)</button>
+        <button class="button" id="upgradeD">Lv1. 데미지 증가 1Gold</button>
         <button class="button" id="critUp">크리티컬 확률 증가</button>
       </div>
     </div>
@@ -153,29 +167,32 @@
       AttBtn.addEventListener("click", function () {
         crit = 0;
         //공격력 확정
-        plusATD =
-          Math.floor(
-            Math.random() *
-              (attLv * (attLv * (2 + attLv) + 26) - 10 * (attLv * (2 + attLv)))
-          ) +
-          10 * (attLv * (2 + attLv));
+        plusATD = Math.floor(
+          Math.random() *
+            (attLv * (attLv * (attLv / 4) + 15) -
+              (6 * (attLv * (attLv / 4)) +
+                (attLv * (attLv * (attLv / 4))) / 5)) +
+            (6 * (attLv * (attLv / 4)) + (attLv * (attLv * (attLv / 4))) / 5)
+        );
 
         //골드 증가
         Gold +=
           (Math.floor(
             Math.random() *
-              (attLv * (attLv * (2 + attLv) + 26) - 6 * (attLv * attLv))
+              (attLv * (attLv * (attLv / 4) + 26) - 6 * (attLv * (attLv / 4)))
           ) +
-            6 * (attLv * attLv)) /
-          11;
+            6 * (attLv * (attLv / 4))) /
+          50;
 
         //정보창에 정보 출력
         document.getElementById("EnemyName").innerHTML = `Lv.${Level} ${
           EnemyName[Level - 1]
         }`;
-        document.getElementById("DamagePerClick").innerHTML = `DPC : ${
-          6 * (attLv * attLv)
-        } ~ ${attLv * attLv * (2 + attLv) + 26}`;
+        document.getElementById(
+          "DamagePerClick"
+        ).innerHTML = `DPC : ${Math.floor(
+          6 * (attLv * (attLv / 4)) + (attLv * (attLv * (attLv / 4))) / 5
+        )} ~ ${Math.floor(attLv * attLv * (attLv / 4) + 15)}`;
         document.getElementById("Gold").innerHTML = `돈 : ${Math.floor(
           Gold
         )}원`;
@@ -184,7 +201,7 @@
         if (EXP >= setEXP) {
           Level++;
           EXP -= setEXP;
-          setEXP = Math.floor(100000 * Level + setEXP * (3 + Level / 10));
+          setEXP = Math.floor(200000 * Level + setEXP * (0.9 + Level / 20));
           document.getElementById("cat").src = `Level${Level}.png`;
         }
 
@@ -229,6 +246,12 @@
             Math.random() * picHeight
           }`;
         }
+
+        //타격이펙트 출력
+        document.getElementById("dealEffect").style.opacity = "1";
+        setTimeout(function () {
+          document.getElementById("dealEffect").style.opacity = "0";
+        }, 20);
       });
 
       //무기업그레이드
@@ -236,15 +259,17 @@
       upgradeBtn.addEventListener("click", function () {
         if (Gold >= upgradeG) {
           Gold -= upgradeG;
-          upgradeG += attLv + Math.floor(upgradeG * (0.2 * (attLv / 50)));
+          upgradeG += attLv + Math.floor(upgradeG * (0.2 * (attLv / 250)));
           attLv++;
-          upgradeBtn.innerHTML = `Lv.${attLv},데미지 증가("${upgradeG}"Gold)`;
+          upgradeBtn.innerHTML = `Lv.${attLv} 데미지 증가 ${upgradeG}Gold`;
 
           //정보창에 바뀐 정보 출력
 
-          document.getElementById("DamagePerClick").innerHTML = `DPC : ${
-            6 * attLv * attLv
-          } ~ ${attLv * attLv * (2 + attLv) + 26}`;
+          document.getElementById(
+            "DamagePerClick"
+          ).innerHTML = `DPC : ${Math.floor(
+            6 * (attLv * (attLv / 4)) + (attLv * (attLv * (attLv / 4))) / 5
+          )} ~ ${Math.floor(attLv * attLv * (attLv / 4) + 15)}`;
           document.getElementById("Gold").innerHTML = `돈 : ${Math.floor(
             Gold
           )}원`;
