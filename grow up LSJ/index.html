@@ -7,6 +7,9 @@
     <title>Document</title>
 
     <style>
+      body {
+        background-color: black;
+      }
       .menu-bar {
         display: flex;
         width: 100%;
@@ -16,18 +19,41 @@
         color: white;
         font-weight: bold;
         font-size: 20px;
+        border: 3px solid skyblue;
+        border-radius: 3px;
       }
       .menu {
         margin: auto 25px;
+        width: 100px;
+        height: 100%;
+        text-align: center;
+        line-height: 37.5px;
+      }
+      .menu-logo {
+        font-size: 25px;
       }
     </style>
   </head>
   <body>
-    <div class="menu-bar">
-      <div class="menu">Let's 키우다 Sangjin!</div>
-      <div class="menu">About Game</div>
-      <div class="menu">Play</div>
-      <div class="menu">About Character</div>
+    <div id="menu-bar" class="menu-bar">
+      <div class="menu menu-logo">
+        이상진<br />
+        &nbsp&nbsp키우기
+      </div>
+      <div id="menu-button" class="menu">Play Game</div>
+      <div id="menu-button" class="menu">About Game</div>
+      <div id="menu-button" class="menu">About Character</div>
     </div>
+
+    <script>
+        let navbtn = document.getElementById("menu-button");
+
+        navbtn.addEventListener("mouseover", ()=> {
+          for(let i=1; i<=document.getElementById("menu-bar").style.width; i++) {
+
+            if()
+          }
+      })
+    </script>
   </body>
 </html>
