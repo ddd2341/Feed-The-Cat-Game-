@@ -21,8 +21,11 @@
         font-size: 20px;
         border: 3px solid skyblue;
         border-radius: 3px;
+        position: relative;
+        justify-content: center;
       }
       .menu {
+        z-index: 3;
         margin: auto 25px;
         width: 100px;
         height: 100%;
@@ -32,10 +35,19 @@
       .menu-logo {
         font-size: 25px;
       }
+
+      #effect-div {
+        z-index: 3;
+        position: absolute;
+        background-color: skyblue;
+        height: 100%;
+        width: 0px;
+      }
     </style>
   </head>
   <body>
     <div id="menu-bar" class="menu-bar">
+      <div id="effect-div"></div>
       <div class="menu menu-logo">
         이상진<br />
         &nbsp&nbsp키우기
@@ -46,14 +58,32 @@
     </div>
 
     <script>
-        let navbtn = document.getElementById("menu-button");
+      let navbtn = document.getElementById("menu-button");
+      let nav = document.getElementById("menu-bar");
+      let ef = document.getElementById("effect-div");
 
-        navbtn.addEventListener("mouseover", ()=> {
-          for(let i=1; i<=document.getElementById("menu-bar").style.width; i++) {
+      navbtn.addEventListener("mouseover", () => {
+        ef.style.transitionTimingFunction = "ease-out";
+        ef.style.transitionDuration = "0.5s";
+        divWidth = 0;
 
-            if()
-          }
-      })
+        for (let i = 0; i <= 100; i++) {
+          setTimeout(() => {
+            ef.style.width = `${i}%`;
+          }, 50);
+        }
+      });
+
+      navbtn.addEventListener("mouseleave", () => {
+        ef.style.transitionTimingFunction = "ease-out";
+        ef.style.transitionDuration = "0.5s";
+
+        for (let i = 100; i >= 0; i--) {
+          setTimeout(() => {
+            ef.style.width = `${i}%`;
+          }, 125);
+        }
+      });
     </script>
   </body>
 </html>
