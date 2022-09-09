@@ -32,12 +32,18 @@
         text-align: center;
         line-height: 37.5px;
       }
+      .menu:hover {
+        cursor: pointer;
+      }
+      .menu:active {
+        cursor: default;
+      }
       .menu-logo {
         font-size: 25px;
       }
 
       #effect-div {
-        z-index: 3;
+        z-index: 2;
         position: absolute;
         background-color: skyblue;
         height: 100%;
@@ -70,6 +76,20 @@
         for (let i = 0; i <= 100; i++) {
           setTimeout(() => {
             ef.style.width = `${i}%`;
+            for (let j = 0; j < 4; j++) {
+              document.getElementsByClassName(
+                "menu"
+              )[0].style.color = `rgb(135+${i}*2.55, 206+${i}*2.55, 235+$[i]*2.55)`;
+              document.getElementsByClassName(
+                "menu"
+              )[1].style.color = `rgb(135+${i}*2.55, 206+${i}*2.55, 235+$[i]*2.55)`;
+              document.getElementsByClassName(
+                "menu"
+              )[2].style.color = `rgb(135+${i}*2.55, 206+${i}*2.55, 235+$[i]*2.55)`;
+              document.getElementsByClassName(
+                "menu"
+              )[3].style.color = `rgb(135+${i}*2.55, 206+${i}*2.55, 235+$[i]*2.55)`;
+            }
           }, 50);
         }
       });
